@@ -8,7 +8,7 @@ const Page = db.define('page', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    slug: { 
+    slug: {
         type: Sequelize.STRING,
         allowNull: false
     },
@@ -22,7 +22,7 @@ const Page = db.define('page', {
 });
 
 Page.beforeValidate((pageInstance) => {
-    pageInstance.slug = pageInstance.title.replace(/\W/g, '').replace(/\s+/g, '_')
+    pageInstance.slug = pageInstance.title.replace(/\s+/g, '_').replace(/\W/g, '');
 });
 
 const User = db.define('user', {

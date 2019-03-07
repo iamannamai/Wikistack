@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
+const html = require('html-template-tag');
 const layout = require('./views/layout');
+const main = require('./views/main.js');
 const { db, Page, User } = require('./models');
 const user = require('./Routes/user.js');
 const wiki = require('./Routes/wiki.js');
@@ -16,9 +18,20 @@ app.use(express.urlencoded({ extended: false }));   //parse post requests with u
 app.use(morgan('dev'));
 app.use(express.static('Public'));
 
-app.get('/', (req, res) => {
-    res.send(layout(''));
-    //res.redirect('/wiki');
+app.get('/', async (req, res, next) => {
+    try {
+        const allPages = await Page.findAll();
+        console.dir(allPages);
+        const content = allPages.map((page) => html`
+        <li>
+            <a href="wiki/${page.slug}">${page.title}</a>
+        </li>`);
+
+        res.send(main(content));
+        //res.redirect('/wiki');
+    } catch (error) {
+        next(error);
+    }
 });
 
 app.use('/user', user);
