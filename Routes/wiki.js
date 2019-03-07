@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    res.send('');
+    res.json(req.body);
 });
 
 router.get('/add', (req, res) => {

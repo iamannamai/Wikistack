@@ -11,7 +11,8 @@ then(() => {
   console.log('connected to the database');
 });
 
-app.use(express.json());
+app.use(express.json());    //parse post requests with json body
+app.use(express.urlencoded({ extended: false }));   //parse post requests with urlencoded bodies
 app.use(morgan('dev'));
 app.use(express.static('Public'));
 
