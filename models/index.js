@@ -42,6 +42,8 @@ const User = db.define('user', {
     }
 });
 
+Page.belongsTo(User, { as: 'author'}); // creates authorId in pages table. --> why? look into.
+
 module.exports = {
     db,
     User,

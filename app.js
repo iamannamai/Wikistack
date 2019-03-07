@@ -38,7 +38,7 @@ app.use('/user', user);
 app.use('/wiki', wiki);
 
 async function init() {
-    await db.sync();
+    await db.sync({force: true});
     app.listen('3000', () => {
         console.log('Listening');
     })
