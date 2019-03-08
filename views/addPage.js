@@ -38,8 +38,7 @@ module.exports = () => layout(html`
       <label for="status" class="col-sm-2 control-label">Status</label>
       <div class="col-sm-10">
         <select id="status" name="status" class="form-control">
-          <option value="">--Please choose an option--</option>
-          <option value="open">Open</option>
+          <option value="open" selected>Open</option>
           <option value="closed">Closed</option>
         </select>
       </div>

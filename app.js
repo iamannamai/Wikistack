@@ -5,8 +5,8 @@ const html = require('html-template-tag');
 const layout = require('./views/layout');
 const main = require('./views/main.js');
 const { db, Page, User } = require('./models');
-const user = require('./Routes/user.js');
-const wiki = require('./Routes/wiki.js');
+const user = require('./Routes/user');
+const wiki = require('./Routes/wiki');
 
 db.authenticate().
 then(() => {
@@ -21,7 +21,6 @@ app.use(express.static('Public'));
 app.get('/', async (req, res, next) => {
     try {
         const allPages = await Page.findAll();
-        console.dir(allPages);
         const content = allPages.map((page) => html`
         <li>
             <a href="wiki/${page.slug}">${page.title}</a>
@@ -34,14 +33,16 @@ app.get('/', async (req, res, next) => {
     }
 });
 
-app.use('/user', user);
+app.use('/users', user);
 app.use('/wiki', wiki);
 
 async function init() {
-    await db.sync({force: true});
+    await db.sync(
+        // {force: true}
+    );
     app.listen('3000', () => {
         console.log('Listening');
-    })
+    });
 }
 
 init();
