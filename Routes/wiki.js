@@ -55,7 +55,7 @@ router.get('/:slug', async (req, res, next) => {
       res.status(404).send('404 Page Not Found');
     }
 
-    res.send(wikiPage(pageContent[0], pageContent[0].author.name));
+    res.send(wikiPage(pageContent[0], pageContent[0].author));
   } catch (error) {
     next(error);
   }
