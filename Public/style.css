@@ -6,8 +6,3 @@ body {
 a {
   color: #00B7FF;
 }
-
-body {
-  display: flex;
-  flex-direction: column;
-}
