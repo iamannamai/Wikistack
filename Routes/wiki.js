@@ -88,7 +88,7 @@ router.post('/', async (req, res, next) => {
     // let save = await page.save();
     const page = await Page.create(req.body);
     page.setAuthor(user);
-    res.redirect(`/wiki/${page.slug}`); //save.slug
+    res.redirect(`${page.slug}`); //save.slug
   } catch (error) {
     next(error);
   }
